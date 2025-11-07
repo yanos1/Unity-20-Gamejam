@@ -1,0 +1,44 @@
+using Managers;
+using Player;
+using UnityEngine;
+
+public class ReplayManager : MonoBehaviour
+{
+    public GameObject playerClonePrefab;
+    private PlayerRecorder _recorder;
+
+    private bool isRecording = false;
+
+    private void Update()
+    {
+        // Start recording
+        if (!isRecording && Input.GetKeyDown(KeyCode.R))
+        {
+            EventManager.Instance.InvokeEvent(EventNames.StartRecording, null);
+            isRecording = true;
+            SetRecorder();
+            _recorder.StartRecording();
+        }
+
+        // Stop recording & spawn clone
+        else if (isRecording && Input.GetKeyDown(KeyCode.R))
+        {
+            EventManager.Instance.InvokeEvent(EventNames.StopRecording, null);
+            isRecording = false;
+            SetRecorder();
+
+            var recordedData = _recorder.StopRecording();
+            GameObject clone = Instantiate(playerClonePrefab, _recorder.transform.position, Quaternion.identity);
+            clone.GetComponent<PlayerManager>().Init(isClone: true);
+            clone.GetComponent<PlayerReplay>().LoadFrames(recordedData);
+        }
+    }
+
+    private void SetRecorder()
+    {
+        if (_recorder is null)
+        {
+            _recorder = CoreManager.Instance.player.GetComponent<PlayerRecorder>();
+        }
+    }
+}
