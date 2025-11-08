@@ -1,3 +1,4 @@
+using System;
 using Managers;
 using Player;
 using UnityEngine;
@@ -8,6 +9,21 @@ public class ReplayManager : MonoBehaviour
     private PlayerRecorder _recorder;
 
     private bool isRecording = false;
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener(EventNames.Die, OnDie);
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.Instance.AddListener(EventNames.Die, OnDie);
+    }
+
+    private void OnDie(object obj)
+    {
+        isRecording = false;
+    }
 
     private void Update()
     {
@@ -29,8 +45,11 @@ public class ReplayManager : MonoBehaviour
 
             var recordedData = _recorder.StopRecording();
             GameObject clone = Instantiate(playerClonePrefab, _recorder.transform.position, Quaternion.identity);
-            clone.GetComponent<PlayerManager>().Init(isClone: true);
+            var player = clone.GetComponent<PlayerManager>();
+            player.Init(isClone: true);
             clone.GetComponent<PlayerReplay>().LoadFrames(recordedData);
+            
+            CloneManager.Instance.RegisterPlayer(player);
         }
     }
 

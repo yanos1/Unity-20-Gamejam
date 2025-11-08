@@ -58,5 +58,6 @@ namespace Managers
         StartRecording = 1,
         StopRecording = 2,
         StartNewScene = 3,
+        Die =4,
     }
 }

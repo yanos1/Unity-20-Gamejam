@@ -17,8 +17,6 @@ namespace Player
         {
             CoreManager.Instance.player = this;
             _rb = GetComponent<Rigidbody2D>();
-
-            DontDestroyOnLoad(gameObject);
         }
 
         private void OnEnable()
@@ -45,8 +43,6 @@ namespace Player
         private void OnStartNewScene(object obj)
         {
             transform.position = FindAnyObjectByType<Checkpoint.Checkpoint>().gameObject.transform.position;
-            print($"is clone: {_isClone}");
-            if (_isClone) Destroy(gameObject);
         }
 
         private void OnStartRecording(object obj)
@@ -131,6 +127,13 @@ namespace Player
         public void UpdatePlayerVersion(UnityVersionData unityVersion)
         {
             playerMovement2D.UpdatePlayerVersion(unityVersion);
+        }
+
+        public void Die()
+        {
+            EventManager.Instance.InvokeEvent(EventNames.Die, null);
+            ScenesManager.Instance.ReloadCurrentScene();
+            GetComponent<PlayerRecorder>().DeleteRecording();
         }
     }
 }

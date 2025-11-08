@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Managers;
 using Player;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class PlayerRecorder : MonoBehaviour
     private float recordTimer;
     private List<PlayerFrameData> recordedFrames = new List<PlayerFrameData>();
     
+
     private void Update()
     {
         if (!isRecording) return;
@@ -38,6 +40,12 @@ public class PlayerRecorder : MonoBehaviour
     {
         isRecording = false;
         return new List<PlayerFrameData>(recordedFrames);
+    }
+
+    public void DeleteRecording()
+    {
+        recordedFrames.Clear();
+        isRecording = false;
     }
     
     [System.Serializable]
