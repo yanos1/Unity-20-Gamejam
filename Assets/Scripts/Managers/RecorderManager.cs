@@ -28,7 +28,7 @@ public class ReplayManager : MonoBehaviour
     private void Update()
     {
         // Start recording
-        if (!isRecording && Input.GetKeyDown(KeyCode.R))
+        if (!isRecording && Input.GetKeyDown(KeyCode.R) && LevelManager.Instance.canReleaseNewVersion())
         {
             EventManager.Instance.InvokeEvent(EventNames.StartRecording, null);
             isRecording = true;
