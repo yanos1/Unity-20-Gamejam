@@ -7,6 +7,8 @@ public class ReplayManager : MonoBehaviour
 {
     public GameObject playerClonePrefab;
     private PlayerRecorder _recorder;
+    private float recordMaxTime =  6f; 
+    private float recordCurrentTime = 0f;
 
     private bool isRecording = false;
 
@@ -27,8 +29,17 @@ public class ReplayManager : MonoBehaviour
 
     private void Update()
     {
+        if (isRecording)
+        {
+            print("recording... delta time is"+ Time.deltaTime);
+            recordCurrentTime += Time.deltaTime;
+            print("current time: "+ recordCurrentTime);
+            UIManager.Instance.UpdateRecordCountDown(recordMaxTime - recordCurrentTime);
+        }
+
+
         // Start recording
-        if (!isRecording && Input.GetKeyDown(KeyCode.R))
+        if (!isRecording && Input.GetKeyDown(KeyCode.R) && LevelManager.Instance.canReleaseNewVersion())
         {
             EventManager.Instance.InvokeEvent(EventNames.StartRecording, null);
             isRecording = true;
@@ -37,11 +48,12 @@ public class ReplayManager : MonoBehaviour
         }
 
         // Stop recording & spawn clone
-        else if (isRecording && Input.GetKeyDown(KeyCode.R))
+        else if (isRecording && (Input.GetKeyDown(KeyCode.R) || recordCurrentTime >= recordMaxTime))
         {
             EventManager.Instance.InvokeEvent(EventNames.StopRecording, null);
             isRecording = false;
             SetRecorder();
+            recordCurrentTime = 0;
 
             var recordedData = _recorder.StopRecording();
             GameObject clone = Instantiate(playerClonePrefab, _recorder.transform.position, Quaternion.identity);
