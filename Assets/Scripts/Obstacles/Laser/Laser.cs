@@ -1,9 +1,10 @@
-﻿using Player;
+﻿using Obstacles.Buttons;
+using Player;
 using UnityEngine;
 
 namespace Obstacles.Laser
 {
-    public class Laser : MonoBehaviour
+    public class Laser : MonoBehaviour, IActivate
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -14,6 +15,16 @@ namespace Obstacles.Laser
                     player.Die();
                 }
             }
+        }
+
+        public void Activate()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public void Deactivate()
+        {
+            gameObject.SetActive(true);
         }
     }
 }

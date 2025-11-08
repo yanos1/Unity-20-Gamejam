@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2161717600747599078}
   - component: {fileID: 2223837454671567167}
   - component: {fileID: 1243094241415708522}
+  - component: {fileID: 8826225924333547904}
   m_Layer: 6
   m_Name: RotatingPlatform
   m_TagString: Untagged
@@ -192,3 +193,15 @@ HingeJoint2D:
   m_AngleLimits:
     m_LowerAngle: 0
     m_UpperAngle: 359
+--- !u!114 &8826225924333547904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779807972458933102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d397ff710184347a073d9921d4a21e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Obstacles.RotatingPlatform.RotatingPlatform

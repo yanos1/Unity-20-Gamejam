@@ -17,7 +17,6 @@ public class PlayerMovement2D : MonoBehaviour
     [Header("Dash")] public float dashForce = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
-    public bool allowAirDash = false;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -46,7 +45,7 @@ public class PlayerMovement2D : MonoBehaviour
             Jump();
 
         // Dash input
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash && (isGrounded || allowAirDash))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             StartDash();
 
         HandleDashTimers();
@@ -69,6 +68,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Jump()
     {
+        canDash = true;
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
