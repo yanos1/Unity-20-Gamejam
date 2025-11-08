@@ -131,6 +131,7 @@ namespace Player
 
         public void Die()
         {
+            if(ScenesManager.Instance.IsSwitchingScene) return;
             EventManager.Instance.InvokeEvent(EventNames.Die, null);
             ScenesManager.Instance.ReloadCurrentScene();
             GetComponent<PlayerRecorder>().DeleteRecording();

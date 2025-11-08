@@ -38,7 +38,7 @@ namespace Managers
             {
                 LoadNextScene();
             }
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 ReloadCurrentScene();
             }
@@ -104,10 +104,9 @@ namespace Managers
             if (newSceneIndex >= 0 && newSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
                 isSwitchingScene = true;
-                print($"current scene is {currentSceneIndex} {SceneManager.GetActiveScene().name}");
+                print($"old scene is {currentSceneIndex} {SceneManager.GetActiveScene().name}");
                 if (doFade)
                 {
-                   print("do fade for scene");
                     UIManager.Instance.ShowLoadingScreen();
                     while (!UIManager.Instance.IsFadeInFinished())
                     {
@@ -119,7 +118,8 @@ namespace Managers
                 {
                     yield return null;
                 }
-                
+                print("loading new scene");
+
                 // CoreManager.Instance.AudioManager.ResumeAllAudio();
                 // Set the new scene as active
                 SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(newSceneIndex));
@@ -132,6 +132,7 @@ namespace Managers
 
             if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
             {
+                print("Unloading last scene");
                 AsyncOperation unloadOperation;
                 unloadOperation = SceneManager.UnloadSceneAsync(currentSceneIndex);
                 
