@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4230773899664426163}
   - component: {fileID: 6351812810872332148}
   - component: {fileID: 7445134911710809205}
+  - component: {fileID: 8211130417218909001}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -224,7 +225,6 @@ MonoBehaviour:
   dashForce: 20
   dashDuration: 0.2
   dashCooldown: 1
-  allowAirDash: 0
 --- !u!114 &4230773899664426163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d6bffca1b1434288e9eabd6bbe8077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player.PlayerManager
+  playerMovement2D: {fileID: 0}
 --- !u!114 &7445134911710809205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,3 +263,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb8e526eb0b41498a42f66a8eff3792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerReplay
+--- !u!1773428102 &8211130417218909001
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012509383320594918}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_TranslationAtRest: {x: -7.44, y: -1.44, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_Active: 1
+  m_IsLocked: 1
+  m_Sources: []
