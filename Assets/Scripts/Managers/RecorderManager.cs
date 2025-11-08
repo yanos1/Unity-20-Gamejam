@@ -34,6 +34,7 @@ public class ReplayManager : MonoBehaviour
             print("recording... delta time is"+ Time.deltaTime);
             recordCurrentTime += Time.deltaTime;
             print("current time: "+ recordCurrentTime);
+            UIManager.Instance.UpdateRecordCountDown(recordMaxTime - recordCurrentTime);
         }
 
 
