@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class PlayerRecorder : MonoBehaviour
@@ -8,7 +10,7 @@ public class PlayerRecorder : MonoBehaviour
 
     private float recordTimer;
     private List<PlayerFrameData> recordedFrames = new List<PlayerFrameData>();
-
+    
     private void Update()
     {
         if (!isRecording) return;

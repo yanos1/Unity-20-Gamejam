@@ -1,3 +1,4 @@
+using ScriptableObjects;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -117,5 +118,11 @@ public class PlayerMovement2D : MonoBehaviour
     {
         if (groundCheck != null)
             Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    public void UpdatePlayerVersion(UnityVersionData newVersion)
+    {
+        if(newVersion.updateJump) jumpForce = newVersion.jumpPower;
+        if(newVersion.updateSpeed) moveSpeed = newVersion.speed;
     }
 }

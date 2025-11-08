@@ -1,42 +1,65 @@
 using System.Collections;
-using System.Collections.Generic;
 using Managers;
+using ScriptableObjects;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerManager : MonoBehaviour
     {
-        private void Start()
+        [SerializeField] private PlayerMovement2D playerMovement2D;
+        private Rigidbody2D _rb;
+
+        private bool _isClone;
+        public bool IsClone => _isClone;
+
+        private void Awake()
         {
             CoreManager.Instance.player = this;
+            _rb = GetComponent<Rigidbody2D>();
+
+            DontDestroyOnLoad(gameObject);
         }
 
         private void OnEnable()
         {
             EventManager.Instance.AddListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.AddListener(EventNames.StopRecording, OnStopRecording);
+            EventManager.Instance.AddListener(EventNames.StartNewScene, OnStartNewScene);
         }
 
         private void OnDisable()
         {
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStopRecording);
-
+            EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
         }
 
         private void OnDestroy()
         {
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStartRecording);
+            EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
         }
+
+        private void OnStartNewScene(object obj)
+        {
+            transform.position = FindAnyObjectByType<Checkpoint.Checkpoint>().gameObject.transform.position;
+            print($"is clone: {_isClone}");
+            if (_isClone) Destroy(gameObject);
+        }
+
         private void OnStartRecording(object obj)
         {
+            if(_isClone) return;
+
             transform.position = CheckPointManager.Instance.GetCheckPointPosition();
         }
-        
+
         private void OnStopRecording(object obj)
         {
+            if(_isClone) return;
+
             StartCoroutine(WaitBeforeResetPos());
         }
 
@@ -61,6 +84,7 @@ namespace Player
 
         private void DisablePlayer()
         {
+
             // Example: stop movement
             var rb = GetComponent<Rigidbody2D>();
             if (rb != null) rb.simulated = false;
@@ -86,22 +110,27 @@ namespace Player
         }
 
 
-
-        private bool _isClone;
-        public bool IsClone => _isClone;
-    
         public void Init(bool isClone)
         {
             _isClone = isClone;
+            if (!isClone)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+
             if (isClone)
             {
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                _rb.bodyType = RigidbodyType2D.Kinematic;
                 Destroy(gameObject.GetComponent<PlayerMovement2D>());
                 Destroy(gameObject.GetComponent<PlayerRecorder>());
-                Destroy(gameObject.GetComponent<PlayerManager>());
                 GetComponent<SpriteRenderer>().color *= Color.darkGray;
                 gameObject.layer = LayerMask.NameToLayer("Ground");
             }
+        }
+
+        public void UpdatePlayerVersion(UnityVersionData unityVersion)
+        {
+            playerMovement2D.UpdatePlayerVersion(unityVersion);
         }
     }
 }
