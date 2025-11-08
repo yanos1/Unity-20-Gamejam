@@ -25,7 +25,6 @@ namespace Managers
 
         private void OnStartNewScene(object obj)
         {
-            print("Starting new scene, updating level and max versions");   
             currentLevel++;   
             currentMaxVersions = currentLevel < maxVersionsPerLevel.Length ? 
                 maxVersionsPerLevel[currentLevel]: maxVersionsPerLevel[maxVersionsPerLevel.Length - 1];
@@ -33,7 +32,6 @@ namespace Managers
 
         private void OnStartRecording(object obj)
         {
-            print("Started recording, reducing allowed versions");
             currentMaxVersions--;
         }
 
@@ -51,6 +49,5 @@ namespace Managers
         {
             return currentMaxVersions > 0;
         }
-
     }
 }
