@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Managers.Recording
@@ -10,7 +11,7 @@ namespace Managers.Recording
 
         private Coroutine _blinkingCoroutine;
         private bool _isRecording;
-
+        
         public void TurnOnRecording()
         {
             if (_isRecording) return; // Already active

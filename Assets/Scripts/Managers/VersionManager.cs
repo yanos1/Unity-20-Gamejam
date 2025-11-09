@@ -12,7 +12,6 @@ namespace Managers
         private int curIndex;
         public int currentVersion = 0;
 
-        [SerializeField] private AudioSource src;
         private bool isPlaying = false;
         
 
@@ -23,17 +22,6 @@ namespace Managers
         public void UpdateVersion()
         {
             CoreManager.Instance.player.UpdatePlayerVersion(unityVersions[curIndex++]);
-        }
-
-        private void Update()
-        {
-            if (!isPlaying)
-            {
-                if (LevelManager.Instance.currentLevel >= 2)
-                {
-                    src.Play();
-                }
-            }
         }
     }
 }

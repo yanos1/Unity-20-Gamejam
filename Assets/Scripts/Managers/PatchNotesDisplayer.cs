@@ -46,12 +46,12 @@ namespace Managers
         private readonly Dictionary<int, PatchNotes> levelToPatchNotes = new()
         {
             { 1, new PatchNotes(
-                new List<string> { "No updates" },
+                new List<string> { "Added sound system" },
                 new List<string> { "No bugs" }
             ) },
 
             { 2, new PatchNotes(
-                new List<string> { " Added TrailRenderer ! Hurray !" },
+                new List<string> { "No updates" },
                 new List<string> { " System bug, causes versions to crash unexpectedly." }
             ) },
 
@@ -66,7 +66,7 @@ namespace Managers
             ) },
 
             { 5, new PatchNotes(
-                new List<string> { " Added new sound system (music)." },
+                new List<string> { " Added TrailRenderer system ! Hurray " },
                 new List<string> { " None known." }
             ) },
 

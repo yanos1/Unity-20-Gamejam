@@ -18,11 +18,14 @@ public class ReplayManager : MonoBehaviour
     private void OnEnable()
     {
         EventManager.Instance.AddListener(EventNames.Die, OnDie);
+        EventManager.Instance.AddListener(EventNames.StartNewScene, OnDie);
     }
     
     private void OnDisable()
     {
-        EventManager.Instance.AddListener(EventNames.Die, OnDie);
+        EventManager.Instance.RemoveListener(EventNames.Die, OnDie);
+        EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnDie);
+
     }
 
     private void OnDie(object obj)

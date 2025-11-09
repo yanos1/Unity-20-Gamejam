@@ -1210,6 +1210,22 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 198.37404
       objectReference: {fileID: 0}
+    - target: {fileID: 650547516756737745, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 650547516756737745, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 650547516756737745, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 650547516756737745, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2335706229051137460, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
       propertyPath: m_Name
       value: nextSceneTrigger

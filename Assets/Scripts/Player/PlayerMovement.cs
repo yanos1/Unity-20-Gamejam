@@ -63,8 +63,7 @@ public class PlayerMovement2D : MonoBehaviour
     private void Update()
     {
         
-        // Only assign if current level >= 2
-        if (LevelManager.Instance.currentLevel >= 2)
+        if (LevelManager.Instance.currentLevel >= 4)
             trail.enabled = true;
         else
             trail.enabled = false;

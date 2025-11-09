@@ -24,6 +24,7 @@ namespace Managers
         private void OnEnable()
         {
             EventManager.Instance.AddListener(EventNames.StartRecording, OnStartRecording);
+            EventManager.Instance.AddListener(EventNames.Die, OnStopRecording);
             EventManager.Instance.AddListener(EventNames.StopRecording, OnStopRecording);
             EventManager.Instance.AddListener(EventNames.StartNewScene, OnStartNewScene);
         }
@@ -31,6 +32,7 @@ namespace Managers
         private void OnDisable()
         {
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
+            EventManager.Instance.RemoveListener(EventNames.Die, OnStopRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStopRecording);
             EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
         }

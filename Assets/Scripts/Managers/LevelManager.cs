@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,9 +9,11 @@ namespace Managers
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
+        public TextMeshProUGUI t;
+        public GameObject panel;
         
         public int currentLevel = 0;
-        int[] maxVersionsPerLevel = { 1000,3,1,1,1,2,1,1,1,1,1,1 };  
+        int[] maxVersionsPerLevel = { 1000,3,1,1,1,2,2,1,1,2,1,1 };  
         int currentMaxVersions;
 
 
@@ -17,6 +21,20 @@ namespace Managers
         {
             Instance = this;
             currentMaxVersions = maxVersionsPerLevel[0];
+            StartCoroutine(ShowTutorial());
+        }
+
+        private IEnumerator ShowTutorial()
+        {
+            print("cotoutine started 123");
+
+            InputManager.Instance.DisableInput();
+            yield return new WaitForSeconds(5f);
+            print("5 seconds passed 123");
+            t.gameObject.SetActive(true);
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+            panel.SetActive(false);
+            InputManager.Instance.EnableInput();
         }
 
         private void OnEnable()

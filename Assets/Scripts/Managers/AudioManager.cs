@@ -32,33 +32,36 @@ namespace Managers
             }
 
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         private void OnEnable()
         {
-            if (EventManager.Instance == null) return;
             EventManager.Instance.AddListener(EventNames.StartRecording, OnStartRecording);
+            EventManager.Instance.AddListener(EventNames.Die, OnStopRecording);
+            EventManager.Instance.AddListener(EventNames.StartNewScene, (object o) => PlayMusic());
             EventManager.Instance.AddListener(EventNames.StopRecording, OnStopRecording);
         }
 
         private void OnDisable()
         {
-            if (EventManager.Instance == null) return;
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStopRecording);
+            EventManager.Instance.RemoveListener(EventNames.Die, OnStopRecording);
+
         }
 
         // ----------------- Public API -----------------
-        public void PlayMusic(AudioClip clip, bool loop = true, float fadeSeconds = 0.5f)
+        public void PlayMusic()
         {
-            if (clip == null) return;
-            if (musicSource.clip == clip && musicSource.isPlaying) return;
-            StartCoroutine(SwapMusic(clip, loop, fadeSeconds));
+            print("play music 123");
+            if (!musicSource.isPlaying)
+            {
+                print("laying music 123");
+                musicSource.Play();
+            }
+            OnStopRecording(null);
         }
-
-        public void StopMusic(float fadeSeconds = 0.5f) =>
-            StartCoroutine(FadeOut(musicSource, fadeSeconds));
+        
 
         public void PlaySFX(SFXType sound, float volume = 1f)
         {
