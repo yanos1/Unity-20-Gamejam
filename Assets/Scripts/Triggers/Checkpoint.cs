@@ -12,6 +12,7 @@ namespace Checkpoint
             if (other.GetComponent<PlayerManager>())
             {
                 CheckPointManager.Instance.RecordPosition(transform.position);
+         
             }
         }
     }
