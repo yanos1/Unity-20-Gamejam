@@ -30,23 +30,67 @@ namespace Managers
         {
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStopRecording);
-
+            EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
         }
         
+        private int recordingDisplayCount = 0;
+        private const int MaxDisplayCount = 2;
+
         private void OnStartRecording(object obj)
         {
-            startRecording.gameObject.SetActive(false);
-            releaseNewUnityVersion.gameObject.SetActive(true);
+            // Increment display count each time recording starts
+            recordingDisplayCount++;
             UpdateAllowedVersionsText();
-            recordCountDown.gameObject.SetActive(true);
+
+            if (recordingDisplayCount <= MaxDisplayCount)
+            {
+                if (startRecording != null)
+                    startRecording.gameObject.SetActive(false);
+
+                if (releaseNewUnityVersion != null)
+                    releaseNewUnityVersion.gameObject.SetActive(true);
+
+                if (recordCountDown != null)
+                    recordCountDown.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                // After limit reached, hide all permanently
+                HideAllRecordingUI();
+            }
         }
-        
+
         private void OnStopRecording(object obj)
         {
-            startRecording.gameObject.SetActive(true);
-            releaseNewUnityVersion.gameObject.SetActive(false);
-            recordCountDown.gameObject.SetActive(false);
+            if (recordingDisplayCount <= MaxDisplayCount)
+            {
+                if (releaseNewUnityVersion != null)
+                    releaseNewUnityVersion.gameObject.SetActive(false);
+
+                if (recordCountDown != null)
+                    recordCountDown.gameObject.SetActive(false);
+
+                if (startRecording != null)
+                    startRecording.gameObject.SetActive(true);
+            }
+            else
+            {
+                HideAllRecordingUI();
+            }
         }
+
+        private void HideAllRecordingUI()
+        {
+            if (startRecording != null)
+                startRecording.gameObject.SetActive(false);
+            if (releaseNewUnityVersion != null)
+                releaseNewUnityVersion.gameObject.SetActive(false);
+            if (recordCountDown != null)
+                recordCountDown.gameObject.SetActive(false);
+        }
+
+
 
         private void OnStartNewScene(object obj)
         {
@@ -75,7 +119,7 @@ namespace Managers
 
         private void UpdateAllowedVersionsText()
         {
-            AllowedVersionsPerLevel.text = "Releases Left: " + LevelManager.Instance.GetAllowedVersionsForCurrentLevel();
+             AllowedVersionsPerLevel.text = "Releases Left: " + LevelManager.Instance.GetAllowedVersionsForCurrentLevel();
         }
         private void Start()
         {

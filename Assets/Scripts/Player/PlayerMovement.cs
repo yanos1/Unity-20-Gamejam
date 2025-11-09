@@ -1,20 +1,24 @@
 using ScriptableObjects;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement2D : MonoBehaviour
 {
-    [Header("Movement")] public float moveSpeed = 7f;
+    [Header("Movement")]
+    public float moveSpeed = 7f;
     public float jumpForce = 12f;
     public LayerMask groundLayers;
     public Transform groundCheck;
     public float groundCheckRadius = 0.1f;
 
-    [Header("Jump Tuning")] [Tooltip("Extra gravity multiplier when player is falling")]
-    public float fallMultiplier = 2.5f;
+    [Header("Jump Tuning")]
+    [Tooltip("Extra gravity multiplier when player is falling after jumping")]
+    public float jumpFallMultiplier = 3f;
+    [Tooltip("Extra gravity multiplier when player falls without jumping (e.g. walks off ledge)")]
+    public float normalFallMultiplier = 1f;
 
-    [Header("Dash")] public float dashForce = 20f;
+    [Header("Dash")]
+    public float dashForce = 20f;
     public float dashDuration = 0.2f;
     public float dashCooldown = 1f;
 
@@ -22,6 +26,7 @@ public class PlayerMovement2D : MonoBehaviour
     private bool isGrounded;
     private bool isDashing;
     private bool canDash = true;
+    private bool hasJumped = false;
     private float dashTimeLeft;
     private float dashCooldownTimer;
     private float horizontalInput;
@@ -34,22 +39,21 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Update()
     {
-        // Input handling
         horizontalInput = Input.GetAxisRaw("Horizontal");
-
-        // Ground check
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
 
-        // Jump input — fires only once per press
         if (Input.GetButtonDown("Jump") && isGrounded)
             Jump();
 
-        // Dash input
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             StartDash();
 
         HandleDashTimers();
         HandleBetterJump();
+
+        // Reset jump flag when touching ground again
+        if (isGrounded && hasJumped)
+            hasJumped = false;
     }
 
     private void FixedUpdate()
@@ -68,6 +72,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Jump()
     {
+        hasJumped = true;
         canDash = true;
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -77,10 +82,12 @@ public class PlayerMovement2D : MonoBehaviour
     {
         if (isDashing) return;
 
-        // Only apply stronger gravity while falling
+        // Apply extra gravity based on whether we jumped or fell naturally
         if (rb.linearVelocity.y < 0)
         {
-            rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+            float multiplier = hasJumped ? jumpFallMultiplier : normalFallMultiplier;
+
+            rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (multiplier) * Time.deltaTime);
         }
     }
 
@@ -90,8 +97,6 @@ public class PlayerMovement2D : MonoBehaviour
         canDash = false;
         dashTimeLeft = dashDuration;
         dashDirection = new Vector2(horizontalInput != 0 ? horizontalInput : transform.localScale.x, 0).normalized;
-
-        // Optional: cancel vertical velocity
         rb.linearVelocity = Vector2.zero;
     }
 
@@ -122,7 +127,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     public void UpdatePlayerVersion(UnityVersionData newVersion)
     {
-        if(newVersion.updateJump) jumpForce = newVersion.jumpPower;
-        if(newVersion.updateSpeed) moveSpeed = newVersion.speed;
+        if (newVersion.updateJump) jumpForce = newVersion.jumpPower;
+        if (newVersion.updateSpeed) moveSpeed = newVersion.speed;
     }
 }

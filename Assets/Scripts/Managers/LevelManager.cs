@@ -5,13 +5,13 @@ namespace Managers
     public class LevelManager : MonoBehaviour
     {
         public static LevelManager Instance;
-
-        int currentLevel = 0;
-        int[] maxVersionsPerLevel = { 3, 4, 5, 6, 7 };  
+        
+        public int currentLevel = 0;
+        int[] maxVersionsPerLevel = { 1,3,1,1,1,1,1,1,1,1,1,1 };  
         int currentMaxVersions;
 
 
-        private void Awake()
+        private void Start()
         {
             Instance = this;
             currentMaxVersions = maxVersionsPerLevel[0];
@@ -25,9 +25,20 @@ namespace Managers
 
         private void OnStartNewScene(object obj)
         {
-            currentLevel++;   
-            currentMaxVersions = currentLevel < maxVersionsPerLevel.Length ? 
-                maxVersionsPerLevel[currentLevel]: maxVersionsPerLevel[maxVersionsPerLevel.Length - 1];
+            if (obj is bool isNextScene)
+            {
+                if (isNextScene)
+                {
+                    currentLevel++;   
+                    currentMaxVersions = currentLevel < maxVersionsPerLevel.Length ? 
+                        maxVersionsPerLevel[currentLevel]: maxVersionsPerLevel[maxVersionsPerLevel.Length - 1];
+                }
+                else
+                {
+                    currentMaxVersions = maxVersionsPerLevel[currentLevel];
+                }
+            }
+         
         }
 
         private void OnStartRecording(object obj)

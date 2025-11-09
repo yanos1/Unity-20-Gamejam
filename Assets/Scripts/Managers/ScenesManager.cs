@@ -149,7 +149,7 @@ namespace Managers
                 }
 
                 isSwitchingScene = false;
-                EventManager.Instance.InvokeEvent(EventNames.StartNewScene, currentSceneIndex + 1);
+                EventManager.Instance.InvokeEvent(EventNames.StartNewScene, currentSceneIndex != newSceneIndex);
             }
 
             currentSceneIndex = newSceneIndex;

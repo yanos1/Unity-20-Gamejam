@@ -33,6 +33,11 @@ namespace Obstacles.Elevator
             _lastPosition = _startPoint;
         }
 
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+        }
+
         private void FixedUpdate()
         {
             // Move the elevator

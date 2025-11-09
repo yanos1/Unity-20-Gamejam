@@ -1,13 +1,16 @@
 using System;
 using Managers;
+using Managers.Recording;
 using Player;
 using UnityEngine;
 
 public class ReplayManager : MonoBehaviour
 {
     public GameObject playerClonePrefab;
+    [SerializeField] private RecorderManagerVisuals ui;
     private PlayerRecorder _recorder;
-    private float recordMaxTime =  6f; 
+
+    [SerializeField] private float recordMaxTime; 
     private float recordCurrentTime = 0f;
 
     private bool isRecording = false;
@@ -25,6 +28,7 @@ public class ReplayManager : MonoBehaviour
     private void OnDie(object obj)
     {
         isRecording = false;
+        ui.TurnOffRecording();
     }
 
     private void Update()
@@ -41,6 +45,7 @@ public class ReplayManager : MonoBehaviour
         // Start recording
         if (!isRecording && Input.GetKeyDown(KeyCode.R) && LevelManager.Instance.canReleaseNewVersion())
         {
+            ui.TurnOnRecording();
             EventManager.Instance.InvokeEvent(EventNames.StartRecording, null);
             isRecording = true;
             SetRecorder();
@@ -50,6 +55,7 @@ public class ReplayManager : MonoBehaviour
         // Stop recording & spawn clone
         else if (isRecording && (Input.GetKeyDown(KeyCode.R) || recordCurrentTime >= recordMaxTime))
         {
+            ui.TurnOffRecording();
             EventManager.Instance.InvokeEvent(EventNames.StopRecording, null);
             isRecording = false;
             SetRecorder();
