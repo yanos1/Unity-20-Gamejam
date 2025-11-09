@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayManager
   playerClonePrefab: {fileID: 9012509383320594918, guid: ff33560187fd91d44b34e4d666fbe857, type: 3}
+  ui: {fileID: 0}
+  recordMaxTime: 0
 --- !u!114 &461848793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,6 +424,7 @@ MonoBehaviour:
   releaseNewUnityVersion: {fileID: 722736941}
   AllowedVersionsPerLevel: {fileID: 0}
   recordCountDown: {fileID: 0}
+  restart: {fileID: 0}
 --- !u!1 &524865003
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,7 +1100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalScale.x
-      value: 9.6
+      value: 8.85
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalScale.y
@@ -1109,7 +1112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.73
+      value: -3.94
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1150,6 +1153,22 @@ PrefabInstance:
     - target: {fileID: 7274936923538701047, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.073132925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5176471
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

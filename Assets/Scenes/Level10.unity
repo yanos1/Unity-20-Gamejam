@@ -601,6 +601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayManager
   playerClonePrefab: {fileID: 9012509383320594918, guid: ff33560187fd91d44b34e4d666fbe857, type: 3}
+  ui: {fileID: 0}
+  recordMaxTime: 0
 --- !u!114 &461848793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,6 +670,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Managers.UIManager
   startRecording: {fileID: 1236512572}
   releaseNewUnityVersion: {fileID: 722736941}
+  AllowedVersionsPerLevel: {fileID: 0}
+  recordCountDown: {fileID: 0}
+  restart: {fileID: 0}
 --- !u!114 &461848798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1152,6 +1157,10 @@ PrefabInstance:
     - target: {fileID: 5883570490205873890, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222682274629017944, guid: 45836219b817aa849abae94a0590b2dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1694,6 +1703,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 686427059196844281, guid: eef9f623f6f6a024d94c7b34d4d3bb16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3133639717109776468, guid: eef9f623f6f6a024d94c7b34d4d3bb16, type: 3}
       propertyPath: m_Name
       value: Checkpoint

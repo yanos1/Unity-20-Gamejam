@@ -408,13 +408,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.0074408716
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5283019
+      objectReference: {fileID: 0}
     - target: {fileID: 6757631866436637506, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
       propertyPath: m_Name
       value: DeadzoneWithButton (1)
       objectReference: {fileID: 0}
     - target: {fileID: 7963252573971817924, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.61000013
+      value: 0.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.93725497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -734,6 +762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayManager
   playerClonePrefab: {fileID: 9012509383320594918, guid: ff33560187fd91d44b34e4d666fbe857, type: 3}
+  ui: {fileID: 0}
+  recordMaxTime: 0
 --- !u!114 &461848793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,6 +833,7 @@ MonoBehaviour:
   releaseNewUnityVersion: {fileID: 722736941}
   AllowedVersionsPerLevel: {fileID: 0}
   recordCountDown: {fileID: 0}
+  restart: {fileID: 0}
 --- !u!114 &461848798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,6 +2014,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577853526154600685, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5294118
+      objectReference: {fileID: 0}
     - target: {fileID: 6757631866436637506, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
       propertyPath: m_Name
       value: DeadzoneWithButton
@@ -1990,6 +2037,18 @@ PrefabInstance:
     - target: {fileID: 7963252573971817924, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.93725497
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720945987134565228, guid: 83260bae0d2958342920424bb87f2c6f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

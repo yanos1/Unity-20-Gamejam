@@ -27,9 +27,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5690235750313457450}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.26, y: -2.52596, z: 0}
-  m_LocalScale: {x: 3.5, y: 1.1, z: 1}
+  m_LocalScale: {x: 4.11, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8575413922008426761}
@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.58152366, g: 0.6226415, b: 0.5923145, a: 1}
+  m_Color: {r: 0.0110804355, g: 0.7830189, b: 0.2739011, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbc80037b98be84c9645d132b6f72a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StaticLaser
-  interval: 2
+  interval: 1.75
   laser: {fileID: 9175087703446516210}
 --- !u!1001 &3338320925251972082
 PrefabInstance:
@@ -162,8 +162,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 65445521220463513}
     m_Modifications:
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.6
+      value: 2.153
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -204,6 +208,22 @@ PrefabInstance:
     - target: {fileID: 7274936923538701047, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_Name
       value: LaserBeam
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.0025364957
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.021197943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321965218885059092, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5377358
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

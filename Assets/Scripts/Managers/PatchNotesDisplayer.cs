@@ -51,8 +51,8 @@ namespace Managers
             ) },
 
             { 2, new PatchNotes(
-                new List<string> { " Added TrailRenderer ! Hurray !." },
-                new List<string> { " System bug, old versions to crash unexpectedly." }
+                new List<string> { " Added TrailRenderer ! Hurray !" },
+                new List<string> { " System bug, causes versions to crash unexpectedly." }
             ) },
 
             { 3, new PatchNotes(
@@ -81,11 +81,11 @@ namespace Managers
             ) },
 
             { 8, new PatchNotes(
-                new List<string> { " Added dash ability." },
+                new List<string> { " Added dash ability. Press SHIFT to dash. You can dash mid air." },
                 new List<string>
                 {
                     "- Jump might fail randomly (30% chance).",
-                    "- System bug, old versions to crash unexpectedly."
+                    "- System bug, causes versions to crash unexpectedly."
                 }
             ) },
 
