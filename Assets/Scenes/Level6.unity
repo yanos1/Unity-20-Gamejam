@@ -821,6 +821,7 @@ MonoBehaviour:
   releaseNewUnityVersion: {fileID: 722736941}
   AllowedVersionsPerLevel: {fileID: 0}
   recordCountDown: {fileID: 0}
+  restart: {fileID: 0}
 --- !u!114 &461848798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,7 +1027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 957222434800508050, guid: 4ade42a840e39c844963c7e6d985254b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.88
+      value: 2.27
       objectReference: {fileID: 0}
     - target: {fileID: 957222434800508050, guid: 4ade42a840e39c844963c7e6d985254b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1785,7 +1786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981675167973541358, guid: d3ab789ff418d244ba7c071353cdecb0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.94
+      value: 2.33
       objectReference: {fileID: 0}
     - target: {fileID: 5981675167973541358, guid: d3ab789ff418d244ba7c071353cdecb0, type: 3}
       propertyPath: m_LocalPosition.z

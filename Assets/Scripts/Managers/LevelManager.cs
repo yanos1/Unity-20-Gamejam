@@ -9,7 +9,7 @@ namespace Managers
         public static LevelManager Instance;
         
         public int currentLevel = 0;
-        int[] maxVersionsPerLevel = { 1,3,1,1,1,2,1,1,1,1,1,1 };  
+        int[] maxVersionsPerLevel = { 1000,3,1,1,1,2,1,1,1,1,1,1 };  
         int currentMaxVersions;
 
 

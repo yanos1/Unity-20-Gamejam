@@ -38,7 +38,7 @@ namespace Managers
             {
                 LoadNextScene();
             }
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && LevelManager.Instance.currentLevel > 0)
             {
                 ReloadCurrentScene();
             }
@@ -81,6 +81,7 @@ namespace Managers
 
         public int LoadNextScene(float delayBetweenFades = 0)
         {
+            if (isSwitchingScene) return -1;
             if (currentSceneIndex + 1 < numScenes)
             {
                 StartCoroutine(SwitchScene(currentSceneIndex + 1, doFade: true, delayBetweenFades));

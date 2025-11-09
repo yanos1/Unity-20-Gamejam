@@ -51,7 +51,7 @@ namespace Managers
             ) },
 
             { 2, new PatchNotes(
-                new List<string> { " New Particle System ! Hurray !." },
+                new List<string> { " Added TrailRenderer ! Hurray !." },
                 new List<string> { " System bug, old versions to crash unexpectedly." }
             ) },
 
@@ -66,7 +66,7 @@ namespace Managers
             ) },
 
             { 5, new PatchNotes(
-                new List<string> { " Added new sound effects." },
+                new List<string> { " Added new sound system (music)." },
                 new List<string> { " None known." }
             ) },
 
@@ -85,7 +85,7 @@ namespace Managers
                 new List<string>
                 {
                     "- Jump might fail randomly (30% chance).",
-                    "- Crashing  (Old versions crash)."
+                    "- System bug, old versions to crash unexpectedly."
                 }
             ) },
 
@@ -118,10 +118,12 @@ namespace Managers
 
         private void OpenPatches(object obj)
         {
+            
             if (isDisplaying) return;
             if (obj is not ValueTuple<bool, int> sceneInfo) return;
             if(!sceneInfo.Item1) return;
             int level = sceneInfo.Item2;
+            InputManager.Instance.DisableInput();
 
             // Try to get patch notes for this level; if none, use empty
             if (!levelToPatchNotes.TryGetValue(level, out var notes))
@@ -141,7 +143,7 @@ namespace Managers
 
         private IEnumerator TypeText(string text)
         {
-            titleText.text = "Patch Notes";
+            titleText.text = $"whats new in version {VersionManager.Instance.currentVersion} ";
             contentText.text = "";
 
             foreach (char c in text)
@@ -152,8 +154,10 @@ namespace Managers
 
             // Wait for any key press or tap to close
             yield return new WaitUntil(() => Input.anyKeyDown);
+            
             patchPanel.SetActive(false);
             isDisplaying = false;
+            InputManager.Instance.EnableInput();
         }
 
         private string FormatPatchNotes(List<string> updates, List<string> bugs)

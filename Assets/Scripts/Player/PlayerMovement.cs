@@ -1,6 +1,9 @@
+using System;
+using JetBrains.Annotations;
 using Managers;
 using ScriptableObjects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement2D : MonoBehaviour
@@ -26,20 +29,55 @@ public class PlayerMovement2D : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private bool isDashing;
+    private bool hasDash = false;
     private bool canDash = true;
     private bool hasJumped = false;
     private float dashTimeLeft;
     private float dashCooldownTimer;
     private float horizontalInput;
     private Vector2 dashDirection;
+    private float speedAddition = 0.5f;
+    private bool addSpeed = false;
+    [SerializeField] private  TrailRenderer trail;
+
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener(EventNames.StartNewScene, OnStartNewScene);
+    }
+    
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
+    }
+    private void OnStartNewScene(object obj)
+    {
+        horizontalInput = 0;
+    }
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
     private void Update()
     {
+        
+        // Only assign if current level >= 2
+        if (LevelManager.Instance.currentLevel >= 2)
+            trail.enabled = true;
+        else
+            trail.enabled = false;
+
+        if (LevelManager.Instance.currentLevel >= 8)
+        {
+            hasDash = true;
+        }
+        else
+        {
+            hasDash = false;
+        }
+        
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
 
         HandleInput();
@@ -62,7 +100,7 @@ public class PlayerMovement2D : MonoBehaviour
                 Jump();
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            if (hasDash && Input.GetKeyDown(KeyCode.LeftShift) && canDash )
                 StartDash();
         }
     }
@@ -88,7 +126,7 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Move()
     {
-        float targetSpeed = horizontalInput * moveSpeed;
+        float targetSpeed = horizontalInput * (moveSpeed + (addSpeed ? speedAddition : 0));
         rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
     }
 

@@ -12,6 +12,12 @@ namespace Managers
             Instance = this;
         }
 
+
+        private void Update()
+        {
+            print($"input enabled {InputEnabled}");
+        }
+
         public bool InputEnabled { get; set; } = true;
 
         public void EnableInput()

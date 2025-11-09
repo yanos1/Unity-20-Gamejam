@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Managers;
 using ScriptableObjects;
+using TMPro;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +11,7 @@ namespace Player
     {
         [SerializeField] private PlayerMovement2D playerMovement2D;
         private Rigidbody2D _rb;
+        [SerializeField] public TextMeshProUGUI currentVerisonText;
 
         private bool _isClone;
         public bool IsClone => _isClone;
@@ -66,7 +68,6 @@ namespace Player
         private void OnStopRecording(object obj)
         {
             if(_isClone) return;
-
             StartCoroutine(WaitBeforeResetPos());
         }
 
@@ -99,6 +100,7 @@ namespace Player
             // Stop input scripts
             var movement = GetComponent<PlayerMovement2D>();
             if (movement != null) movement.enabled = false;
+            currentVerisonText.enabled = false;
         }
 
         private void EnablePlayer()
@@ -108,6 +110,10 @@ namespace Player
 
             var movement = GetComponent<PlayerMovement2D>();
             if (movement != null) movement.enabled = true;
+            VersionManager.Instance.currentVersion += 1;
+            currentVerisonText.text = VersionManager.Instance.currentVersion.ToString();
+            currentVerisonText.enabled = true;
+
         }
 
         private void SetVisible(bool visible)
@@ -132,6 +138,7 @@ namespace Player
                 Destroy(gameObject.GetComponent<PlayerRecorder>());
                 GetComponent<SpriteRenderer>().color *= Color.darkGray;
                 gameObject.layer = LayerMask.NameToLayer("Ground");
+                currentVerisonText.text = VersionManager.Instance.currentVersion.ToString();
             }
         }
 

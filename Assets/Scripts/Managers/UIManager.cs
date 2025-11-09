@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Managers
 {
@@ -13,6 +14,7 @@ namespace Managers
         [SerializeField] private TextMeshProUGUI releaseNewUnityVersion;
         [SerializeField] private TextMeshProUGUI AllowedVersionsPerLevel;
         [SerializeField] private TextMeshProUGUI recordCountDown;
+        [SerializeField] private Button restart;
 
         private void Awake()
         {
@@ -90,10 +92,24 @@ namespace Managers
                 recordCountDown.gameObject.SetActive(false);
         }
 
-
+        public void Restart()
+        {
+            ScenesManager.Instance.ReloadCurrentScene();
+        }
 
         private void OnStartNewScene(object obj)
         {
+            if (obj is ValueTuple<bool, int> scenedata)
+            {
+                if (scenedata.Item2 >= 1)
+                {
+                    restart.gameObject.SetActive(true);
+                }
+                else
+                {
+                     restart.gameObject.SetActive(false);
+                }
+            }
             UpdateAllowedVersionsText();
         }
 
@@ -119,8 +135,13 @@ namespace Managers
 
         private void UpdateAllowedVersionsText()
         {
-             AllowedVersionsPerLevel.text = "Releases Left: " + LevelManager.Instance.GetAllowedVersionsForCurrentLevel();
+            int allowedVersions = LevelManager.Instance.GetAllowedVersionsForCurrentLevel();
+
+            string displayText = allowedVersions > 50 ? "Unlimited" : allowedVersions.ToString();
+
+            AllowedVersionsPerLevel.text = "Releases Left: " + displayText;
         }
+
         private void Start()
         {
             UpdateAllowedVersionsText();
