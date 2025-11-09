@@ -15,6 +15,7 @@ namespace Checkpoint
                 print("go to next scene!");
                 triggered = true;
                 ScenesManager.Instance.LoadNextScene();
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.PatchNotes);
             }
         }
     }

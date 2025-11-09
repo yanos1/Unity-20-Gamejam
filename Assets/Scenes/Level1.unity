@@ -872,7 +872,8 @@ GameObject:
   - component: {fileID: 461848803}
   - component: {fileID: 461848804}
   - component: {fileID: 461848805}
-  - component: {fileID: 461848806}
+  - component: {fileID: 461848807}
+  - component: {fileID: 461848808}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1071,7 +1072,25 @@ MonoBehaviour:
   unityVersions: []
   currentVersion: 0
   src: {fileID: 0}
---- !u!82 &461848806
+--- !u!114 &461848807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461848791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3889446398024c447b7e8f8c37b308ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Managers.AudioManager
+  musicSource: {fileID: 461848808}
+  sfxSource: {fileID: 461848808}
+  jumpClip: {fileID: 8300000, guid: 1daf758fee68f974cbffc25e2bda9e2b, type: 3}
+  patchNotesClip: {fileID: 8300000, guid: 454acfb7a50905e4faf8f9faff6f4083, type: 3}
+  recordingClip: {fileID: 8300000, guid: cd40e0b725eb2d640a56c2f54d3d74ce, type: 3}
+  mixer: {fileID: 0}
+--- !u!82 &461848808
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1082,7 +1101,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: f37d31920077074479861e6c96af8931, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
