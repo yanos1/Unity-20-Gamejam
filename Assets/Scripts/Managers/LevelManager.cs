@@ -1,3 +1,5 @@
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Managers
@@ -7,7 +9,7 @@ namespace Managers
         public static LevelManager Instance;
         
         public int currentLevel = 0;
-        int[] maxVersionsPerLevel = { 1,3,1,1,1,1,1,1,1,1,1,1 };  
+        int[] maxVersionsPerLevel = { 1,3,1,1,1,2,1,1,1,1,1,1 };  
         int currentMaxVersions;
 
 
@@ -25,9 +27,9 @@ namespace Managers
 
         private void OnStartNewScene(object obj)
         {
-            if (obj is bool isNextScene)
+            if (obj is ValueTuple<bool, int> isNewSceneToNewSceneIndex)
             {
-                if (isNextScene)
+                if (isNewSceneToNewSceneIndex.Item1)
                 {
                     currentLevel++;   
                     currentMaxVersions = currentLevel < maxVersionsPerLevel.Length ? 

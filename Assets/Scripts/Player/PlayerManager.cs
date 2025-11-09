@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Managers;
 using ScriptableObjects;
@@ -18,7 +19,7 @@ namespace Player
             CoreManager.Instance.player = this;
             _rb = GetComponent<Rigidbody2D>();
         }
-
+        
         private void OnEnable()
         {
             EventManager.Instance.AddListener(EventNames.StartRecording, OnStartRecording);
@@ -38,6 +39,16 @@ namespace Player
             EventManager.Instance.RemoveListener(EventNames.StartRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StopRecording, OnStartRecording);
             EventManager.Instance.RemoveListener(EventNames.StartNewScene, OnStartNewScene);
+        }
+
+        void Update()
+        {
+            // Check if "CrashingClones" bug is active
+            if (_isClone && !GetComponent<PlayerReplay>().isPlaying && BugManager.Instance.currentBugs.Contains(BugManager.Bugs.CrashingClones))
+            {
+                // Move this clone downward slowly
+                transform.position += Vector3.down * (Time.deltaTime * 0.4f); // 1f = speed, adjust as needed
+            }
         }
 
         private void OnStartNewScene(object obj)

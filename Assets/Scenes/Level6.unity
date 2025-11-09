@@ -750,6 +750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReplayManager
   playerClonePrefab: {fileID: 9012509383320594918, guid: ff33560187fd91d44b34e4d666fbe857, type: 3}
+  ui: {fileID: 0}
+  recordMaxTime: 0
 --- !u!114 &461848793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,7 +953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.46
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 6437302715694826235, guid: c7138c6ca9fb08e4fb26754dd46b3ccd, type: 3}
       propertyPath: m_LocalPosition.y

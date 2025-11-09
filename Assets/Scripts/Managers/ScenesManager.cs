@@ -34,7 +34,7 @@ namespace Managers
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.F12))
             {
                 LoadNextScene();
             }
@@ -149,7 +149,8 @@ namespace Managers
                 }
 
                 isSwitchingScene = false;
-                EventManager.Instance.InvokeEvent(EventNames.StartNewScene, currentSceneIndex != newSceneIndex);
+                EventManager.Instance.InvokeEvent(EventNames.StartNewScene,
+                    (currentSceneIndex != newSceneIndex, newSceneIndex));
             }
 
             currentSceneIndex = newSceneIndex;

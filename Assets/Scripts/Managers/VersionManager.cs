@@ -9,6 +9,7 @@ namespace Managers
         [SerializeField] private List<UnityVersionData> unityVersions;
         private int curIndex;
         
+        
         public void UpdateVersion()
         {
             CoreManager.Instance.player.UpdatePlayerVersion(unityVersions[curIndex++]);

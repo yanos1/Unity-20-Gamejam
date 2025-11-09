@@ -1,3 +1,4 @@
+using Managers;
 using ScriptableObjects;
 using UnityEngine;
 
@@ -39,15 +40,9 @@ public class PlayerMovement2D : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayers);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            Jump();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            StartDash();
-
+        HandleInput();
         HandleDashTimers();
         HandleBetterJump();
 
@@ -56,12 +51,39 @@ public class PlayerMovement2D : MonoBehaviour
             hasJumped = false;
     }
 
+    private void HandleInput()
+    {
+        if (InputManager.Instance.InputEnabled)
+        {
+            horizontalInput = BugManager.Instance.currentBugs.Contains(BugManager.Bugs.ReverseInput) ? -1 * Input.GetAxisRaw("Horizontal") : Input.GetAxisRaw("Horizontal");
+
+            if (Input.GetButtonDown("Jump") && isGrounded && ShouldJump())
+            {
+                Jump();
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+                StartDash();
+        }
+    }
+
     private void FixedUpdate()
     {
         if (isDashing)
             rb.linearVelocity = dashDirection * dashForce;
         else
             Move();
+    }
+
+    private bool ShouldJump()
+    {
+        // If the bug is not active, always jump
+        if (!BugManager.Instance.currentBugs.Contains(BugManager.Bugs.JumpMightFail))
+            return true;
+
+        // If the bug is active, only jump 70% of the time
+        float chance = Random.value; // gives 0.0–1.0
+        return chance > 0.3f; // 30% fail chance
     }
 
     private void Move()

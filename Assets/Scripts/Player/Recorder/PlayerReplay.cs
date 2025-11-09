@@ -7,7 +7,7 @@ public class PlayerReplay : MonoBehaviour
     private int frameIndex = 0;
     private float playbackInterval = 0.02f;
     private float timer = 0f;
-    private bool isPlaying = false;
+    public bool isPlaying = false;
 
     public void LoadFrames(List<PlayerRecorder.PlayerFrameData> data)
     {
@@ -35,4 +35,6 @@ public class PlayerReplay : MonoBehaviour
             frameIndex++;
         }
     }
+    
+    
 }
